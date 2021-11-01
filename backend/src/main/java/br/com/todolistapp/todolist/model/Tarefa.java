@@ -33,7 +33,7 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    public boolean isStatusTarefa() {
+    public boolean getStatusTarefa() {
         return statusTarefa;
     }
 
