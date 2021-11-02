@@ -10,11 +10,11 @@ public class Tarefa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "descricaoTarefa")
+    @Column
     private String descricao;
 
 
-    @Column(name = "statusTarefa")
+    @Column
     private boolean statusTarefa;
 
     public int getId() {

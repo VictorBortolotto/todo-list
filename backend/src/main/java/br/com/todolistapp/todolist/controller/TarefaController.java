@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tarefa")
+@RequestMapping({"/tarefa"})
 public class TarefaController {
 
     private TarefaService tarefaService;
@@ -23,7 +23,7 @@ public class TarefaController {
     }
 
     @GetMapping(path = {"/{id}"})
-    public ResponseEntity findById(@PathVariable long id){
+    public ResponseEntity<Tarefa> findById(@PathVariable long id){
         return tarefaService.findById(id);
     }
 
@@ -38,7 +38,7 @@ public class TarefaController {
     }
 
     @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity delete(@PathVariable long id){
+    public ResponseEntity<?> delete(@PathVariable long id){
         return tarefaService.delete(id);
     }
 

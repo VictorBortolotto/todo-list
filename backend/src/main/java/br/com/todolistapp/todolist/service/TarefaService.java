@@ -3,39 +3,45 @@ package br.com.todolistapp.todolist.service;
 import br.com.todolistapp.todolist.model.Tarefa;
 import br.com.todolistapp.todolist.repository.TarefaRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TarefaService {
 
-    private TarefaRepository repository;
+    private TarefaRepository tarefaRepository;
 
-    public List<Tarefa> findAll(){
-        return repository.findAll();
+    public TarefaService(TarefaRepository tarefaRepository) {
+        this.tarefaRepository = tarefaRepository;
     }
 
-    public ResponseEntity findById(long id){
-        return repository.findById(id)
+    public List<Tarefa> findAll(){
+        return tarefaRepository.findAll();
+    }
+
+    public ResponseEntity<Tarefa> findById(long id){
+        return tarefaRepository.findById(id)
                 .map(record -> ResponseEntity.ok().body(record))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     public Tarefa create(Tarefa tarefa){
-        return repository.save(tarefa);
+        return tarefaRepository.save(tarefa);
     }
 
     public ResponseEntity update(long id, Tarefa tarefa) {
-        return repository.findById(id).map(record -> {
+        return tarefaRepository.findById(id).map(record -> {
             record.setDescricao(tarefa.getDescricao());
             record.setStatusTarefa(tarefa.getStatusTarefa());
-            Tarefa updated = repository.save(record);
+            Tarefa updated = tarefaRepository.save(record);
             return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());
     }
 
     public ResponseEntity <?> delete (long id){
-        return repository.findById(id).map(record -> {
-            repository.deleteById(id);
+        return tarefaRepository.findById(id).map(record -> {
+            tarefaRepository.deleteById(id);
             return ResponseEntity.ok().build();
         }).orElse(ResponseEntity.notFound().build());
     }
