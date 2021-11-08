@@ -39,6 +39,5 @@ public class Tarefa {
     public void setStatusTarefa(boolean statusTarefa) {
         this.statusTarefa = statusTarefa;
     }
-
-
+    
 }
