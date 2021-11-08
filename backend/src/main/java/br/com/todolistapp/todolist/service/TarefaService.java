@@ -16,7 +16,7 @@ public class TarefaService {
         this.tarefaRepository = tarefaRepository;
     }
 
-    public List<Tarefa> findAll(){
+    public List findAll(){
         return tarefaRepository.findAll();
     }
 
