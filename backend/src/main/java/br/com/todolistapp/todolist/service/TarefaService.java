@@ -12,11 +12,11 @@ public class TarefaService {
 
     private TarefaRepository tarefaRepository;
 
-    public TarefaService(TarefaRepository tarefaRepository) {
+    public TarefaService(TarefaRepository tarefaRepository){
         this.tarefaRepository = tarefaRepository;
     }
 
-    public List<Tarefa> findAll(){
+    public List findAll(){
         return tarefaRepository.findAll();
     }
 
