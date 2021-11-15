@@ -1,6 +1,6 @@
 package br.com.todolistapp.todolist.service;
 
-import br.com.todolistapp.todolist.model.Tarefa;
+import br.com.todolistapp.todolist.model.TarefaModel;
 import br.com.todolistapp.todolist.repository.TarefaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,34 +16,34 @@ public class TarefaService {
         this.tarefaRepository = tarefaRepository;
     }
 
-    public List findAll(){
-        return tarefaRepository.findAll();
+    public List<TarefaModel> findAllDone(boolean status){
+        return tarefaRepository.findAllByStatus(status);
     }
 
-    public ResponseEntity<Tarefa> findById(long id){
-        return tarefaRepository.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
+    public List<TarefaModel> findAllPending(boolean status){
+        return tarefaRepository.findAllByStatus(status);
     }
 
-    public Tarefa create(Tarefa tarefa){
-        return tarefaRepository.save(tarefa);
-    }
-
-    public ResponseEntity update(long id, Tarefa tarefa) {
+    public ResponseEntity<TarefaModel> updateToDone(long id, TarefaModel tarefa){
         return tarefaRepository.findById(id).map(record -> {
-            record.setDescricao(tarefa.getDescricao());
-            record.setStatusTarefa(tarefa.getStatusTarefa());
-            Tarefa updated = tarefaRepository.save(record);
+            tarefa.setStatus(true);
+            record.setStatus(tarefa.getStatus());
+            TarefaModel updated = tarefaRepository.save(record);
             return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity <?> delete (long id){
+    public ResponseEntity<TarefaModel> updateToPending(long id, TarefaModel tarefa){
         return tarefaRepository.findById(id).map(record -> {
-            tarefaRepository.deleteById(id);
-            return ResponseEntity.ok().build();
+            tarefa.setStatus(false);
+            record.setStatus(tarefa.getStatus());
+            TarefaModel updated = tarefaRepository.save(record);
+            return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());
+    }
+
+    public TarefaModel create(TarefaModel tarefaModel){
+        return tarefaRepository.save(tarefaModel);
     }
 
 }
