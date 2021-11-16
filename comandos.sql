@@ -4,6 +4,6 @@ use todolist;
 
 create table tarefa(
 	id int primary key,
-    descricao varchar(36000),
-    status_tarefa boolean default(false)
+    descricao varchar(16000),
+    status boolean default(false)
 );
