@@ -3,18 +3,20 @@ package br.com.todolistapp.todolist.model;
 import javax.persistence.*;
 
 @Entity
-public class Tarefa {
+@Table(name = "tarefa")
+public class TarefaModel {
 
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "id_seq", sequenceName = "id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
     private long id;
 
     @Column
     private String descricao;
 
     @Column
-    private boolean statusTarefa;
+    private boolean status;
 
     public long getId() {
         return id;
@@ -32,12 +34,12 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    public boolean getStatusTarefa() {
-        return statusTarefa;
+    public boolean getStatus() {
+        return status;
     }
 
-    public void setStatusTarefa(boolean statusTarefa) {
-        this.statusTarefa = statusTarefa;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
     
 }
