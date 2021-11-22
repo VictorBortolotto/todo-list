@@ -1,6 +1,6 @@
 import './App.css';
 
-import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 import { Button, Icon, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { useState } from 'react';
 import { ListaTarefa } from './ListaTarefa';
@@ -24,11 +24,11 @@ function App() {
         {showMenu && <div id="sidebar" className={'sidebar-left-div'}>
 
           <List component="nav">
-            <ListItem button={true} component={Link} {...{to: "/tarefa/pendente"}}>
+            <ListItem button={true} component={Link} {...{to: "/pendente"}}>
               <ListItemIcon><Icon>list</Icon></ListItemIcon>
               <ListItemText primary="Pendente"></ListItemText>
             </ListItem>
-            <ListItem button={true} component={Link} {...{to: "/tarefa/feito"}}>
+            <ListItem button={true} component={Link} {...{to: "/feito"}}>
               <ListItemIcon><Icon>checked</Icon></ListItemIcon>
               <ListItemText primary="Feito"></ListItemText>
             </ListItem>
@@ -38,10 +38,10 @@ function App() {
 
         <div className={'sidebar-body-div'}>
           <div className="sidebar-body-div-outlet">
-            <Routes>
+            <Switch>
               <Route path="/pendente" exact={true} component={() => ListaTarefa({status: false})}/>
               <Route path="/feito" exact={true} component={() => ListaTarefa({status: true})}/>
-            </Routes>
+            </Switch>
           </div>
         </div>
       </div>
