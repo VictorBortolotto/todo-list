@@ -24,8 +24,9 @@ export function ListaTarefa({status}){
         await findAll();
     }, []);
 
-    async function onChange(objetivo, tarefa){
-        if(objetivo.checked){
+    async function onChange(target, tarefa){
+    console.log(target);
+        if(target.checked){
             await updateToDone(tarefa);
         }else{
             await updateToPending(tarefa);
@@ -53,7 +54,7 @@ export function ListaTarefa({status}){
                 {tarefas.filter(tarefa => tarefa.status === status).map(tarefa =>{
                     return (
                         <Card className={'item-list-card'} key={tarefa.id}>
-                            <Checkbox checked={tarefa.status} value={tarefa.id} onChange={({objetivo}) => onChange(objetivo, tarefa)}></Checkbox>
+                            <Checkbox checked={tarefa.status} value={tarefa.id} onChange={({target}) => onChange(target, tarefa)}></Checkbox>
                             {tarefa.descricao}
                         </Card>
                     )
