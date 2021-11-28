@@ -60,7 +60,7 @@ export function ListaTarefa({status}){
                     )
                 })}
 
-                {isAdding && <Card className={'item-list-card'} kew={0}>
+                {isAdding && <Card className={'item-list-card'} key={0}>
                                 <TextField
                                     autoFocus
                                     margin="dense"
@@ -71,12 +71,13 @@ export function ListaTarefa({status}){
                                     onChange={(event) => setDescricao(event.target.value)}
                                 ></TextField>
                                 <Button onClick={() => setIsAdding(false)} variant="contained" color="secondary">Cancelar</Button>
-                                <Button onClick={() => onSave()} variant="contained" color="primary">Aceitar</Button>
+                                <Button onClick={() => onSave()} variant="contained" color="primary">
+                                Aceitar</Button>
                             </Card>
                 }
             </ul>
 
-                {!status && <Fab onClick={onClickToAdd} className={'fab-button'} color='primary' aria-label="Add"><AddIcon/></Fab>}
+            {!status && <Fab onClick={onClickToAdd} className={'fab-button'} color='primary' aria-label="Add"><AddIcon/></Fab>}
 
         </>
 

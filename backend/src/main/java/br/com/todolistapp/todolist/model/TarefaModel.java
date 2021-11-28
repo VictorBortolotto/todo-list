@@ -1,15 +1,15 @@
 package br.com.todolistapp.todolist.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tarefa")
-public class TarefaModel {
+public class TarefaModel implements Serializable {
 
     @Id
     @Column
-    @SequenceGenerator(name = "id_seq", sequenceName = "id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column

@@ -63,5 +63,5 @@ export function save(tarefa){
         cache: 'default',
         body: JSON.stringify(tarefa)
     }
-    return fetch(`http://localhost:8080/tarefa/tarefa`, request).then(response => response.json());
+    return fetch(`http://localhost:8080/tarefa`, request).then(response => response.json());
 }
